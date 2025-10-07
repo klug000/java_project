@@ -3,7 +3,16 @@ import java.util.Scanner;
 public class Main {
 
     //написть функцию с параметрами x, y, z и телом которое считает (x / y + y / x) ^ (2 * z ^ 0,5)
-    public static double[] make_array1(double x, double y, double z){
+    public static double[] make_array1(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter x: ");
+        double x = sc.nextDouble();
+
+        System.out.println("enter y: ");
+        double y = sc.nextDouble();
+
+        System.out.println("enter z: ");
+        double z = sc.nextDouble();
         double[] array = {x, y, z};
         return array;
     }
@@ -19,7 +28,26 @@ public class Main {
     }
 
     //Нехай x_0 = с; х_1 = d; x_k = q * x_(k-1) + r * x_(k-2) + b, k = 2, 3, … . Дано дійсні числа q, r, b, c, d, натуральне n ( n >= 2). Отримати х_n.
-    public static int[] make_array2(int q, int r, int b, int c, int d, int n){
+    public static int[] make_array2(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter q: ");
+        int q = sc.nextInt();
+
+        System.out.println("enter r: ");
+        int r = sc.nextInt();
+
+        System.out.println("enter b: ");
+        int b = sc.nextInt();
+
+        System.out.println("enter c: ");
+        int c = sc.nextInt();
+
+        System.out.println("enter d: ");
+        int d = sc.nextInt();
+
+        System.out.println("enter n (n must be greater than or equal to 2): ");
+        int n = sc.nextInt();
+
         int[] array = {q, r, b, c, d, n};
         return array;
     }
@@ -69,21 +97,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
+
+
         //task 1
         System.out.println("task 1");
 
-        System.out.println("enter x: ");
-        double x = sc.nextDouble();
-
-        System.out.println("enter y: ");
-        double y = sc.nextDouble();
-
-        System.out.println("enter z: ");
-        double z = sc.nextDouble();
-
-        double[] array1 = make_array1(x, y, z);
+        double[] array1 = make_array1();
         double result = calculate(array1);
         System.out.println("result: " + result);
+
+
 
         //task 2
         System.out.println("task 2");
@@ -94,28 +117,11 @@ public class Main {
         time(minutes);
 
 
+
         //task 3
         System.out.println("task 3");
 
-        System.out.println("enter q: ");
-        int q = sc.nextInt();
-
-        System.out.println("enter r: ");
-        int r = sc.nextInt();
-
-        System.out.println("enter b: ");
-        int b = sc.nextInt();
-
-        System.out.println("enter c: ");
-        int c = sc.nextInt();
-
-        System.out.println("enter d: ");
-        int d = sc.nextInt();
-
-        System.out.println("enter n (n must be greater than or equal to 2): ");
-        int n = sc.nextInt();
-
-        int[] array2 = make_array2(q, r, b, c, d, n);
+        int[] array2 = make_array2();
         equation(array2);
 
 
@@ -125,6 +131,8 @@ public class Main {
 
         sum_and_multip();
 
+
+        
         //task 5
         System.out.println("task 5");
 
