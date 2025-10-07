@@ -3,8 +3,12 @@ import java.util.Scanner;
 public class Main {
 
     //написть функцию с параметрами x, y, z и телом которое считает (x / y + y / x) ^ (2 * z ^ 0,5)
-    public static double calculate(double x, double y, double z) {
-        return Math.pow((x / y + y / x), Math.sqrt(2 * z));
+    public static double[] make_array1(double x, double y, double z){
+        double[] array = {x, y, z};
+        return array;
+    }
+    public static double calculate(double[] array) {
+        return Math.pow((array[0] / array[1] + array[1] / array[0]), Math.sqrt(2 * array[2]));
     }
 
     //Написати програму перерахунку величини тимчасового інтервалу, заданого в хвилинах, у величину, виражену в годиннах і хвилинах.
@@ -15,20 +19,23 @@ public class Main {
     }
 
     //Нехай x_0 = с; х_1 = d; x_k = q * x_(k-1) + r * x_(k-2) + b, k = 2, 3, … . Дано дійсні числа q, r, b, c, d, натуральне n ( n >= 2). Отримати х_n.
-    public static void equation(int q, int r, int b, int c, int d, int n){
-        float x_k1 = d, x_k2 = c, x_k = 0, x_result = 0;
-        if (n < 2){
-            System.out.println("error");
+    public static int[] make_array2(int q, int r, int b, int c, int d, int n){
+        int[] array = {q, r, b, c, d, n};
+        return array;
+    }
+    public static void equation(int[] array){
+        float x_k1 = array[4], x_k2 = array[3], x_k = 0, x_result = 0;
+        if (array[5] < 2){
+            System.out.println("error n < 2");
+            return;
         }
-        if (n >= 2){
-            for (int i = 2; i <= n; i++){
-            x_k = q * x_k1 + r * x_k2 + b;
+        for (int i = 2; i <= array[5]; i++){
+            x_k = array[0] * x_k1 + array[1] * x_k2 + array[2];
             x_k2 = x_k1;
             x_k1 = x_k;
             x_result = x_k;
         }
         System.out.println("result = " + x_result);
-        }
     }
 
     //Задано діапазон чисел від -5 до 5. Знайти суму всіх додатніх та добуток від’ємних чисел.
@@ -74,7 +81,8 @@ public class Main {
         System.out.println("enter z: ");
         double z = sc.nextDouble();
 
-        double result = calculate(x, y, z);
+        double[] array1 = make_array1(x, y, z);
+        double result = calculate(array1);
         System.out.println("result: " + result);
 
         //task 2
@@ -107,7 +115,9 @@ public class Main {
         System.out.println("enter n (n must be greater than or equal to 2): ");
         int n = sc.nextInt();
 
-        equation(q, r, b, c, d, n);
+        int[] array2 = make_array2(q, r, b, c, d, n);
+        equation(array2);
+
 
 
         //task 4
