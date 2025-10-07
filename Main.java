@@ -7,9 +7,62 @@ public class Main {
         return Math.pow((x / y + y / x), Math.sqrt(2 * z));
     }
 
+    //Написати програму перерахунку величини тимчасового інтервалу, заданого в хвилинах, у величину, виражену в годиннах і хвилинах.
+    public static void time(int minutes){
+        int hours = minutes / 60;
+        int last_minutes = minutes % 60;
+        System.out.println( hours + "h " + last_minutes + "m ");
+    }
+
+    //Нехай x_0 = с; х_1 = d; x_k = q * x_(k-1) + r * x_(k-2) + b, k = 2, 3, … . Дано дійсні числа q, r, b, c, d, натуральне n ( n >= 2). Отримати х_n.
+    public static void equation(int q, int r, int b, int c, int d, int n){
+        float x_k1 = d, x_k2 = c, x_k = 0, x_result = 0;
+        if (n < 2){
+            System.out.println("error");
+        }
+        if (n >= 2){
+            for (int i = 2; i <= n; i++){
+            x_k = q * x_k1 + r * x_k2 + b;
+            x_k2 = x_k1;
+            x_k1 = x_k;
+            x_result = x_k;
+        }
+        System.out.println("result = " + x_result);
+        }
+    }
+
+    //Задано діапазон чисел від -5 до 5. Знайти суму всіх додатніх та добуток від’ємних чисел.
+    public static void sum_and_multip(){
+        int min = -5, max = 5, sum = 0, multiplication = 1;
+
+        for (int j = min; j <= max; j++){
+            if (j >= 0){
+                sum = sum + j;
+            }
+            if (j < 0){
+                multiplication = multiplication * j;
+            }
+        }
+
+        System.out.println("summa = " + sum);
+        System.out.println("multiplication = " + multiplication);
+    }
+
+    //Нехай х_0 = 1; x_k = (2 - x_k-1^3)/5 , k = 1, 2, … . Знайти перший член х_n , для якого | х_n - х_n-1 | < 10^-5 .
+    public static void x_find(){
+        double k_1 = 0, k = 1;
+        do {
+            k_1 = k;
+            k = (2 - Math.pow(k_1, 3)) / 5;
+        } while (Math.abs(k - k_1) >= Math.pow(10, -5));
+
+        System.out.println("the first member that meets the condition  = " + k);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        
+        //task 1
         System.out.println("task 1");
 
         System.out.println("enter x: ");
@@ -24,18 +77,16 @@ public class Main {
         double result = calculate(x, y, z);
         System.out.println("result: " + result);
 
-        //Написати програму перерахунку величини тимчасового інтервалу, заданого в хвилинах, у величину, виражену в годиннах і хвилинах.
+        //task 2
         System.out.println("task 2");
 
         System.out.println("enter minutes: ");
         int minutes = sc.nextInt();
 
-        int hours = minutes / 60;
-        int last_minutes = minutes % 60;
+        time(minutes);
 
-        System.out.println( hours + "h " + last_minutes + "m ");
 
-        //Нехай x_0 = с; х_1 = d; x_k = q * x_(k-1) + r * x_(k-2) + b, k = 2, 3, … . Дано дійсні числа q, r, b, c, d, натуральне n ( n >= 2). Отримати х_n.
+        //task 3
         System.out.println("task 3");
 
         System.out.println("enter q: ");
@@ -56,41 +107,17 @@ public class Main {
         System.out.println("enter n (n must be greater than or equal to 2): ");
         int n = sc.nextInt();
 
-        float x_k1 = d, x_k2 = c, x_k = 0, x_result = 0;
-        for (int i = 2; i <= n; i++){
-            x_k = q * x_k1 + r * x_k2 + b;
-            x_k2 = x_k1;
-            x_k1 = x_k;
-            x_result = x_k;
-        }
-        System.out.println("result = " + x_result);
-        
-        //Задано діапазон чисел від -5 до 5. Знайти суму всіх додатніх та добуток від’ємних чисел.
+        equation(q, r, b, c, d, n);
+
+
+        //task 4
         System.out.println("task 4");
 
-        int min = -5, max = 5, sum = 0, multiplication = 1;
+        sum_and_multip();
 
-        for (int j = min; j <= max; j++){
-            if (j >= 0){
-                sum = sum + j;
-            }
-            if (j < 0){
-                multiplication = multiplication * j;
-            }
-        }
-
-        System.out.println("summa = " + sum);
-        System.out.println("multiplication = " + multiplication);
-
-        //Нехай х_0 = 1; x_k = (2 - x_k-1^3)/5 , k = 1, 2, … . Знайти перший член х_n , для якого | х_n - х_n-1 | < 10^-5 .
+        //task 5
         System.out.println("task 5");
 
-        double k_1 = 0, k = 1;
-        do {
-            k_1 = k;
-            k = (2 - Math.pow(k_1, 3)) / 5;
-        } while (Math.abs(k - k_1) >= Math.pow(10, -5));
-
-        System.out.println("the first member that meets the condition  = " + k);
+        x_find();
     }
 }
